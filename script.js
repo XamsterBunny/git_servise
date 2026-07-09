@@ -1,11 +1,8 @@
 const form = document.getElementById('lead-form');
 const message = document.getElementById('form-message');
-const leadList = document.getElementById('lead-list');
-const langSelect = document.getElementById('lang-select');
 
 const translations = {
   ru: {
-    languageLabel: 'Язык',
     hero: {
       eyebrow: 'Перенос готового приложения на другой сервер',
       title: 'Переносим сгенерированное приложение на нужный вам сервер за 1 день',
@@ -20,12 +17,15 @@ const translations = {
     },
     services: {
       eyebrow: 'Услуга',
-      title: 'С каких AI-платформ можно создать приложение и куда его перенести',
-      create1: 'Вы можете создавать приложения и прототипы прямо на этих площадках.',
-      create2: 'Подходят для генерации интерфейсов, сервисов и MVP.',
-      migrate1: 'С этих платформ чаще всего и делаем перенос на другой сервер.',
-      migrate2: 'Это целевые среды, куда переносим приложение без потери работы.',
-      oneDay: 'Услуга — 1 день'
+      title: 'Общий план миграции приложения на сервер клиента',
+      step1Title: 'Проектирование',
+      step1: 'Анализируем архитектуру и готовим конфигурацию окружения для фронтенда, бэкенда, базы данных и прокси.',
+      step2Title: 'Перенос логики',
+      step2: 'Переносим серверную логику из облачной платформы на собственный серверный слой для безопасности и контроля.',
+      step3Title: 'Развёртывание',
+      step3: 'Настраиваем инфраструктуру и запускаем приложение в Docker на целевом сервере.',
+      step4Title: 'Проверка',
+      step4: 'Тестируем работу сервисов и сетевое взаимодействие внутри новой среды.'
     },
     form: {
       eyebrow: 'Оставьте заявку',
@@ -50,7 +50,6 @@ const translations = {
     }
   },
   en: {
-    languageLabel: 'Language',
     hero: {
       eyebrow: 'Migration of a ready-made application to another server',
       title: 'We transfer a generated application to the server you need in 1 day',
@@ -65,12 +64,15 @@ const translations = {
     },
     services: {
       eyebrow: 'Service',
-      title: 'Which AI platforms can create an app and where we can move it',
-      create1: 'We build apps and prototypes directly on these platforms.',
-      create2: 'They are suitable for generating interfaces, services and MVPs.',
-      migrate1: 'We most often migrate apps from these platforms to another server.',
-      migrate2: 'These are the target environments where we move the application without losing its functionality.',
-      oneDay: 'Service — 1 day'
+      title: 'General migration plan for the client server',
+      step1Title: 'Design',
+      step1: 'Analyze architecture and prepare the environment for frontend, backend, database, and proxy.',
+      step2Title: 'Logic migration',
+      step2: 'Move server logic from the cloud platform to your own server layer for security and control.',
+      step3Title: 'Deployment',
+      step3: 'Set up infrastructure and run the application in Docker on the target server.',
+      step4Title: 'Validation',
+      step4: 'Test service operation and network connections inside the new environment.'
     },
     form: {
       eyebrow: 'Leave a request',
@@ -95,7 +97,6 @@ const translations = {
     }
   },
   ro: {
-    languageLabel: 'Limbă',
     hero: {
       eyebrow: 'Migrarea unei aplicații gata făcute pe alt server',
       title: 'Transferăm aplicația generată pe serverul potrivit în 1 zi',
@@ -110,12 +111,15 @@ const translations = {
     },
     services: {
       eyebrow: 'Serviciu',
-      title: 'De pe ce platforme AI poți crea o aplicație și unde o putem muta',
-      create1: 'Construim aplicații și prototipuri direct pe aceste platforme.',
-      create2: 'Sunt potrivite pentru generarea interfețelor, serviciilor și MVP-urilor.',
-      migrate1: 'De pe aceste platforme realizăm cel mai des migrarea pe un alt server.',
-      migrate2: 'Acestea sunt mediile țintă în care transferăm aplicația fără a-i pierde funcționalitatea.',
-      oneDay: 'Serviciu — 1 zi'
+      title: 'Plan general de migrare către serverul clientului',
+      step1Title: 'Proiectare',
+      step1: 'Analizăm arhitectura și pregătim mediul pentru frontend, backend, bază de date și proxy.',
+      step2Title: 'Migrare logică',
+      step2: 'Mutăm logica serverului din platforma cloud pe un strat server propriu pentru securitate și control.',
+      step3Title: 'Dezvoltare',
+      step3: 'Configurăm infrastructura și rulăm aplicația în Docker pe serverul țintă.',
+      step4Title: 'Validare',
+      step4: 'Testăm funcționarea serviciilor și conexiunile de rețea în noul mediu.'
     },
     form: {
       eyebrow: 'Lăsați o solicitare',
@@ -141,6 +145,11 @@ const translations = {
   }
 };
 
+function getPageLanguage() {
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  return urlLang && ['ru', 'en', 'ro'].includes(urlLang) ? urlLang : 'ru';
+}
+
 function applyLanguage(lang) {
   const t = translations[lang] || translations.ru;
   document.documentElement.lang = lang;
@@ -160,50 +169,9 @@ function applyLanguage(lang) {
       element.placeholder = value;
     }
   });
-
-  const selectLanguage = document.querySelector('[name="language"]');
-  if (selectLanguage) {
-    selectLanguage.value = lang;
-  }
 }
 
-langSelect.addEventListener('change', (event) => {
-  applyLanguage(event.target.value);
-});
-
-async function loadLeads() {
-  try {
-    const response = await fetch('/api/leads');
-    const leads = await response.json();
-    renderLeads(leads);
-  } catch (error) {
-    console.error('Не удалось загрузить лиды:', error);
-    renderLeads([]);
-  }
-}
-
-function renderLeads(leads) {
-  if (!leads.length) {
-    leadList.innerHTML = '<div class="empty-state">Пока нет сохранённых заявок. Заполните форму справа.</div>';
-    return;
-  }
-
-  leadList.innerHTML = leads
-    .slice()
-    .reverse()
-    .map((lead) => {
-      const createdAt = new Date(lead.createdAt).toLocaleString('ru-RU');
-      return `
-        <article>
-          <strong>${lead.name || 'Без имени'}</strong>
-          <div class="muted">${lead.company || 'Компания не указана'} · ${createdAt}</div>
-          <div>${lead.email || ''}</div>
-          <div>${lead.project || ''}</div>
-        </article>
-      `;
-    })
-    .join('');
-}
+applyLanguage(getPageLanguage());
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -222,7 +190,6 @@ form.addEventListener('submit', async (event) => {
     if (result.ok) {
       message.textContent = 'Заявка отправлена в Telegram и сохранена. Мы свяжемся с вами в ближайшее время.';
       form.reset();
-      loadLeads();
     } else {
       message.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз.';
     }
@@ -232,4 +199,3 @@ form.addEventListener('submit', async (event) => {
   }
 });
 
-loadLeads();

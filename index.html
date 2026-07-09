@@ -19,14 +19,6 @@
   <body>
     <header class="hero">
       <div class="hero__content">
-        <div class="lang-switch">
-          <label for="lang-select" data-i18n="languageLabel">Язык</label>
-          <select id="lang-select">
-            <option value="ru">Русский</option>
-            <option value="en">English</option>
-            <option value="ro">Română</option>
-          </select>
-        </div>
         <p class="eyebrow" data-i18n="hero.eyebrow">Перенос готового приложения на другой сервер</p>
         <h1 data-i18n="hero.title">Переносим сгенерированное приложение на нужный вам сервер за 1 день</h1>
         <p class="hero__text" data-i18n="hero.text">
@@ -54,81 +46,58 @@
           <p class="eyebrow" data-i18n="services.eyebrow">Услуга</p>
           <h2 data-i18n="services.title">С каких AI-платформ можно создать приложение и куда его перенести</h2>
         </div>
-        
+
         <div class="service-grid">
           <article class="service-card">
-            <div class="icon-row">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/openai.svg" alt="ChatGPT" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/anthropic.svg" alt="Claude" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Gemini" />
-            </div>
-            <h3>ChatGPT, Claude, Gemini</h3>
-            <p data-i18n="services.create1">Вы можете создавать приложения и прототипы прямо на этих площадках.</p>
-            <span class="pill" data-i18n="services.oneDay">Услуга — 1 день</span>
+            <h3 data-i18n="services.step1Title">Docker-compose</h3>
+            <p data-i18n="services.step1">Составляем полный docker-compose для React, BFF (Node.js), PostgreSQL и Nginx.</p>
           </article>
           <article class="service-card">
-            <div class="icon-row">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/replit.svg" alt="Replit" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg" alt="v0" />
-            </div>
-            <h3>Replit, Lovable, v0, Bolt</h3>
-            <p data-i18n="services.create2">Подходят для генерации интерфейсов, сервисов и MVP.</p>
-            <span class="pill" data-i18n="services.oneDay">Услуга — 1 день</span>
+            <h3 data-i18n="services.step2Title">Перенос Supabase</h3>
+            <p data-i18n="services.step2">Переносим логику Supabase на серверный слой для защиты и хранения данных.</p>
           </article>
           <article class="service-card">
-            <div class="icon-row">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg" alt="Vercel" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/netlify.svg" alt="Netlify" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/render.svg" alt="Render" />
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/railway.svg" alt="Railway" />
-            </div>
-            <h3>Vercel, Netlify, Render, Railway</h3>
-            <p data-i18n="services.migrate1">С этих платформ чаще всего и делаем перенос на другой сервер.</p>
-            <span class="pill" data-i18n="services.oneDay">Услуга — 1 день</span>
+            <h3 data-i18n="services.step3Title">Proxmox и CI</h3>
+            <p data-i18n="services.step3">Готовим инфраструктуру на Proxmox VE и настраиваем CI для развёртывания.</p>
           </article>
           <article class="service-card">
-            <div class="icon-row icon-row--compact">
-              <span class="target-pill">VPS</span>
-              <span class="target-pill">Cloud</span>
-              <span class="target-pill">Client</span>
-            </div>
-            <h3>VPS, облако, сервер клиента</h3>
-            <p data-i18n="services.migrate2">Это целевые среды, куда переносим приложение без потери работы.</p>
-            <span class="pill" data-i18n="services.oneDay">Услуга — 1 день</span>
+            <h3 data-i18n="services.step4Title">Тестирование</h3>
+            <p data-i18n="services.step4">Проверяем сеть между сервисами и работоспособность приложения.</p>
           </article>
         </div>
       </section>
 
       <section id="form" class="section section--alt">
-        <div class="form-layout">
+        <div class="form-shell">
           <div class="form-copy">
             <p class="eyebrow" data-i18n="form.eyebrow">Оставьте заявку</p>
             <h2 data-i18n="form.title">Опишите текущий сервер и целевую среду — и мы перенесём приложение за 1 день</h2>
             <p data-i18n="form.text">
               Кратко расскажите, где сейчас работает приложение и куда его нужно перенести.
             </p>
+            <div class="form-badges">
+              <span>VPS</span>
+              <span>Cloud</span>
+              <span>Сервер клиента</span>
+            </div>
           </div>
           <form id="lead-form" class="lead-form">
-            <label class="field">
-              <span data-i18n="form.name">Имя</span>
-              <input type="text" name="name" data-i18n-placeholder="form.namePlaceholder" placeholder="Иван" required />
-            </label>
-            <label class="field">
-              <span data-i18n="form.email">Email</span>
-              <input type="email" name="email" data-i18n-placeholder="form.emailPlaceholder" placeholder="you@example.com" required />
-            </label>
-            <label class="field">
-              <span data-i18n="form.phone">Телефон</span>
-              <input type="tel" name="phone" data-i18n-placeholder="form.phonePlaceholder" placeholder="+7 900 000 00 00" />
-            </label>
-            <label class="field">
-              <span data-i18n="form.language">Язык</span>
-              <select name="language">
-                <option value="ru">Русский</option>
-                <option value="en">English</option>
-                <option value="ro">Română</option>
-              </select>
-            </label>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="form.name">Имя</span>
+                <input type="text" name="name" data-i18n-placeholder="form.namePlaceholder" placeholder="Иван" required />
+              </label>
+              <label class="field">
+                <span data-i18n="form.email">Email</span>
+                <input type="email" name="email" data-i18n-placeholder="form.emailPlaceholder" placeholder="you@example.com" required />
+              </label>
+            </div>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="form.phone">Телефон</span>
+                <input type="tel" name="phone" data-i18n-placeholder="form.phonePlaceholder" placeholder="+7 900 000 00 00" />
+              </label>
+            </div>
             <label class="field">
               <span data-i18n="form.server">Текущая и целевая среда</span>
               <input type="text" name="service" data-i18n-placeholder="form.serverPlaceholder" placeholder="Cloudflare, VPS, Azure, сервер клиента" />
@@ -143,13 +112,6 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="section__heading">
-          <p class="eyebrow" data-i18n="leads.eyebrow">Сохранённые заявки</p>
-          <h2 data-i18n="leads.title">Список заявок для дальнейшей связи</h2>
-        </div>
-        <div id="lead-list" class="lead-list"></div>
-      </section>
     </main>
 
     <script src="script.js"></script>
