@@ -1,0 +1,9 @@
+{
+  "name": "ai-project-migration-landing",
+  "version": "1.0.0",
+  "description": "Лендинг для переноса AI-проекта с формой обратной связи и Telegram-уведомлениями",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
