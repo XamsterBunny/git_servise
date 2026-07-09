@@ -319,11 +319,75 @@ select:focus {
   color: var(--muted);
 }
 
+.admin-panel {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.admin-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(17, 28, 47, 0.95);
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(17, 28, 47, 0.95);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 0.95rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.orders-table th {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.orders-table tr:hover {
+  background: rgba(86, 212, 255, 0.08);
+}
+
+.orders-table td {
+  color: var(--text);
+}
+
+.orders-table tr:first-child th {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-meta p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
 .empty-state {
   padding: 1rem;
   border: 1px dashed var(--border);
   border-radius: 18px;
   color: var(--muted);
+  text-align: center;
 }
 
 @media (max-width: 900px) {

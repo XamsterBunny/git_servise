@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { URLSearchParams } = require('url');
+require('dotenv').config();
 
 const port = process.env.PORT || 8000;
 const dataFile = path.join(__dirname, 'leads.json');

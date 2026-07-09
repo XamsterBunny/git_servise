@@ -188,7 +188,7 @@ form.addEventListener('submit', async (event) => {
 
     const result = await response.json();
     if (result.ok) {
-      message.textContent = 'Заявка отправлена в Telegram и сохранена. Мы свяжемся с вами в ближайшее время.';
+      message.textContent = 'Заявка успешно создана и сохранена. Мы свяжемся с вами в ближайшее время.';
       form.reset();
     } else {
       message.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз.';

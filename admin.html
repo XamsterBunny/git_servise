@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Админ — Заявки</title>
+    <meta name="description" content="Админская страница со списком заявок." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="section">
+      <div class="section__heading">
+        <p class="eyebrow">Админ</p>
+        <h1>Все заявки</h1>
+      </div>
+      <div class="admin-panel">
+        <div class="admin-meta">
+          <p id="order-count">Загружается...</p>
+          <button id="refresh-button" class="btn btn--secondary">Обновить</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Дата</th>
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Телефон</th>
+                <th>Среда</th>
+                <th>Что переносить</th>
+                <th>Дополнительно</th>
+              </tr>
+            </thead>
+            <tbody id="orders-body">
+              <tr>
+                <td colspan="7" class="empty-state">Заявки не найдены.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script src="admin.js"></script>
+  </body>
+</html>
